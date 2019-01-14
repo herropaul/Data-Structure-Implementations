@@ -1,0 +1,109 @@
+import java.util.Scanner;
+
+public class TheStack {
+
+	char list[];
+	int stackSize;
+	int top;
+	
+	
+	public TheStack(int size) {
+		stackSize = size;
+		list = new char[stackSize];
+		top = 0;
+	}
+	
+	public void initialize() {
+		top = 0;
+	}
+	
+	public void push(char str) {
+		if(top < stackSize) {
+			list[top] = str;
+			top++;
+		}
+		else {
+			System.out.println("Stack Overflow!!");
+		}
+		
+	}
+	
+	
+	public char pop() {
+		char val;
+		
+		if(top > 0) {
+			val = list[top-1];
+			list[top-1] = '\u0000';
+			top--;
+			return val;
+		}
+		else {
+			return '\u0000';
+		}
+	}
+	
+	public char peek() {
+		if(top > 0) {
+		return list[top-1];
+		}
+		else {
+			return '\u0000';
+		}
+	}
+	
+	public boolean isEmpty() {
+		return (top == 0);
+	}
+	
+	public void print() {
+		int temp = top;
+		for(int i = 0; i < top; i++) {
+			System.out.println(list[i]);
+		}
+	};
+
+	public static void main(String[] args) {
+		
+		TheStack obj = new TheStack(3);
+		
+		
+		System.out.println("Top of the stack: " + obj.peek());
+		
+		System.out.println("Stack elements: ");
+		
+		obj.push('f');
+		obj.push('s');
+		obj.push('d');
+		
+		obj.print();
+		
+		
+		System.out.println("Deleted element: " + obj.pop());
+		System.out.println("Deleted element: " + obj.pop());
+		System.out.println("Deleted element: " + obj.pop());
+		
+		//obj.initialize();
+		//System.out.println("Popping empty stack: " + obj.peek());
+		//System.out.println(obj.pop());
+		/*
+		while(!obj.isEmpty()) {
+			System.out.println(obj.pop() + "\n");
+		}
+		*/
+		
+		/*
+		obj.push("1");
+		System.out.println(obj.peek());
+		obj.push("2");
+		System.out.println(obj.peek());
+		obj.push("3");
+		System.out.println(obj.peek());
+		obj.push("4");
+		System.out.println(obj.peek());
+		obj.push("5");
+		System.out.println(obj.peek());
+		*/
+	}	
+
+}
