@@ -1,0 +1,107 @@
+public class PalindromeClass {
+
+	String list[];
+	int maxSize;
+	int top;
+	
+	/*
+	public PalindromeClass(int size) {
+		maxSize = size;
+		list = new String[maxSize];
+		top = 0;
+	}
+	*/
+	public void push(String str) {
+		if(top < maxSize) {
+			list[top] = str;
+			top++;
+		}
+		else {
+			System.out.println("Stack Overflow!!");
+		}
+		
+	}
+	
+	public String pop() {
+		String val;
+		
+		if(top > 0) {
+			val = list[top-1];
+			list[top-1] = null;
+			top--;
+			return val;
+		}
+		else {
+			return "Empty stack!";
+		}
+	}
+	
+	public void print() {
+		int temp = top;
+		for(int i = 0; i < top; i++) {
+			System.out.println(list[i]);
+		}
+	}
+	
+	
+	public boolean isPalindrome (String word) {
+		boolean pal = true;
+		int length = word.length(); // use length to loop through the word
+		TheStack stack = new TheStack(length);
+		Queue queue = new Queue(length);
+		
+		String str = ""; // str is a placeholder to keep the value of a word
+		
+		//1st forloop pushes
+		for(int i = 0; i < length; i++) {
+			stack.push(word.charAt(i));
+			queue.addQueue(word.charAt(i));
+		}
+		
+		//2nd forloop pops
+		for(int i = 0; i < length; i++) {
+			char stackChar = stack.pop();
+			char queueChar = queue.deleteQueue();
+			//System.out.println("Printing stackChar: " + " " + i + " " + stackChar);
+			//System.out.println("Printing queueChar: " + " " + i + " " + queueChar);
+			
+				if(stackChar != queueChar) {
+					pal = false;
+				}
+				
+		}
+		
+		return pal;
+		/*
+		for(int i = length - 1; i >= 0; i--) {
+			str = str + word.charAt(i); // reverse prints the string
+		}
+		*/
+		
+		/*
+		if(word.equals(str)) {
+			return true;
+		}
+		else
+			return false;
+		*/	
+		
+	}
+	
+	
+	public static void main(String [] args) {
+		
+		PalindromeClass obj = new PalindromeClass();
+		
+		System.out.println(obj.isPalindrome("hello"));
+		
+		/*
+		if(obj.isPalindrome("madam")) {
+			System.out.println("The given string is a palindrome");
+		}
+		else
+			System.out.println("The given string is not a palindrome");
+		*/
+		
+	}	
+}
