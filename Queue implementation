@@ -1,0 +1,89 @@
+public class Queue {
+	
+	char list[];
+	int queueSize;
+	int count;
+	int queueFront;
+	int queueRear;
+	
+	public Queue(int size) {
+		queueSize = size;
+		list = new char[queueSize];
+		count = 0;
+	}
+
+	public void initializeQueue() {
+		queueSize = 0;
+		list = new char[queueSize];
+		count = 0;
+		queueFront = 0;
+		queueRear = 0;
+	}
+	
+	public char[] getList() {
+		return list;
+	}
+	
+	public boolean isEmptyQueue() {
+		return(count < 0);
+	}
+	
+	public boolean isFullQueue() {
+		return(count == queueSize);
+	}
+	
+	public void front() {
+		if(isEmptyQueue()) {
+			System.out.println("Cannot print front. Queue is empty.");
+		}
+		else {
+			char temp;
+			temp = list[queueFront];
+			System.out.println("The front of the queue is: " + temp);
+		}
+	}
+	
+	public void back() {
+		if(isEmptyQueue()) {
+			System.out.println("Cannot print back. Queue is empty.");
+		}
+		else {
+			char temp;
+			temp = list[queueRear];
+			System.out.println("The back of the queue is: " + temp);
+		}
+	}
+	
+	public void addQueue(char queueElement) {
+		if(isFullQueue()) {
+			System.out.println("Cannot add anymore. Queue is full.");
+		}
+		else {
+			queueRear = (queueRear + 1) % queueSize;
+			count++;
+			list[queueRear] = queueElement;
+			System.out.println(list[queueRear]);
+		}
+	}
+	
+	public char deleteQueue() {
+		if(isEmptyQueue()) {
+			return '\u0000';
+		}
+		else {
+			System.out.println(count);
+			count--;
+			//list[queueFront] = '\u0000';
+			//queueFront = (queueFront + 1);
+			queueFront = (queueFront + 1) % queueSize;
+			System.out.println("Printin out queueFront: " + queueFront);
+			return list[queueFront];
+		}
+	}
+	
+	public void print() {
+		int temp = queueFront;
+		for(int i = list.length - 1; i >= 0; i--) {
+			System.out.println(list[i]);
+		}
+	}
